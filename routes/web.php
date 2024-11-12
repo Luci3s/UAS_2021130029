@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('landing');
+// });
+
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\LandingController;
+
+Route::resource('animals', AnimalController::class);
+Route::get('/', LandingController::class)->name('landing');
