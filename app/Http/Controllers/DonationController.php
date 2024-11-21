@@ -12,7 +12,8 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+        $donations = Donation::all();
+        return view('donations.index', compact('donations'));
     }
 
     /**
@@ -20,7 +21,7 @@ class DonationController extends Controller
      */
     public function create()
     {
-        //
+        return view('donations.create');
     }
 
     /**
@@ -28,7 +29,18 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:donations,email',
+            'phone_number' => 'required|string|max:20',
+            'address' => 'required|string',
+        ]);
+
+        // dd($validated);
+
+        Donation::create($validated);
+
+        return redirect()->route('donations.index')->with('success', 'Donation record added successfully!');
     }
 
     /**
@@ -36,7 +48,7 @@ class DonationController extends Controller
      */
     public function show(Donation $donation)
     {
-        //
+        return view('donations.show', compact('donation'));
     }
 
     /**
@@ -44,7 +56,7 @@ class DonationController extends Controller
      */
     public function edit(Donation $donation)
     {
-        //
+        return view('donations.edit', compact('donation'));
     }
 
     /**
@@ -52,7 +64,16 @@ class DonationController extends Controller
      */
     public function update(Request $request, Donation $donation)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:donations,email,' . $donation->id,
+            'phone_number' => 'required|string|max:20',
+            'address' => 'required|string',
+        ]);
+
+        $donation->update($validated);
+
+        return redirect()->route('donations.index')->with('success', 'Donation record updated successfully!');
     }
 
     /**
@@ -60,6 +81,8 @@ class DonationController extends Controller
      */
     public function destroy(Donation $donation)
     {
-        //
+        $donation->delete();
+
+        return redirect()->route('donations.index')->with('success', 'Donation record deleted successfully!');
     }
 }

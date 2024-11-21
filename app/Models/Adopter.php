@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Adopter extends Model
 {
+
+    public function animals()
+    {
+        return $this->belongsToMany(Animal::class, 'adoptions');
+    }
+
     use HasFactory;
 
     protected $fillable = [
@@ -15,4 +21,6 @@ class Adopter extends Model
         'phone_number',
         'address'
     ];
+
+
 }

@@ -21,7 +21,11 @@ use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AdopterController;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\AdoptionController;
 
+Route::resource('adoptions', AdoptionController::class);
+Route::resource('donations', DonationController::class);
 Route::resource('adopters', AdopterController::class);
 Route::resource('employees', EmployeeController::class);
 Route::resource('animals', AnimalController::class);

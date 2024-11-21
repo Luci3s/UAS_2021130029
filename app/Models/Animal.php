@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Animal extends Model
 {
+
+    public function adopter()
+    {
+        return $this->belongsToMany(Adopter::class, 'adoptions');
+    }
+
     use HasFactory;
 
     protected $table = 'animals';
