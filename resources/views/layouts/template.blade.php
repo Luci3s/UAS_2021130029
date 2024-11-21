@@ -23,8 +23,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/animals">Animals</a>
+                    <!-- Dropdown for Animals -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Animals
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/animals">All Animals</a></li>
+                            <li><a class="dropdown-item" href="/animals/adoptable">Adoptable Animals</a></li>
+                            <li><a class="dropdown-item" href="/animals/recent">Recently Added</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/animals/new">Add New Animal</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
@@ -72,7 +82,6 @@
         @yield('content')
     </main>
 
-
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Animal Shelter. All rights reserved.</p>
@@ -83,4 +92,3 @@
     <script src="scripts.js"></script>
 </body>
 </html>
-
